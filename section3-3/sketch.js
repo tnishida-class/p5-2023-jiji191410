@@ -1,32 +1,44 @@
-// テキスト「キーボード操作に反応する」
-let x, y;
 
 function setup(){
-  createCanvas(windowWidth, windowHeight);
-  x = width / 2;
-  y = height / 2;
+createCanvas(windowWidth, windowHeight);
+
+x = widht-25
+y = height-25;
+}
+  let y = 50; // 円の初期位置
+  let vy = 0; // 円の速度
+  let gravity = 1; // 重力
+
+// 円を描画する関数
+function draw() {
+    background(5, 39, 94);
+    ellipse(x, y, 50);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // キャンバスをクリア
+    ctx.beginPath();
+    ctx.arc(50, y, 20, 0, Math.PI * 2);
+    ctx.fill();
 }
 
-function draw(){
-  background(160, 192, 255);
-  ellipse(x, y, 50);
-  if(keyIsDown(LEFT_ARROW)){ x -= 5; }
-  if(keyIsDown(RIGHT_ARROW)){ x += 5; }
-  if(keyIsDown(UP_ARROW)){ y -= 5; }
-  if(keyIsDown(DOWN_ARROW)){ y += 5; }
-  if(keyIsDown("A".charCodeAt(0))){ x+= 10; }
-  if(keyIsDown(" ".charCodeAt(0))){ x-= 10; }
+// アニメーションを行う関数
+function animate() {
+    vy += gravity; // 重力を速度に加える
+    y += vy; // 速度を位置に加える
+
+    if (y > canvas.height - 20) { // 地面についたら跳ね返る
+        y = canvas.height - 20;
+        vy *= -0.9;
+    }
+
+    drawCircle();
+
+    requestAnimationFrame(animate); // 次のアニメーションフレームを要求
 }
 
-// イベントハンドラを使用するパターン
-// function keyPressed(){
-//   if(keyCode == LEFT_ARROW){ x -= 5; }
-//   else if(keyCode == RIGHT_ARROW){ x+= 5; }
-//   else if(keyCode == DOWN_ARROW){ y += 5; }
-//   else if(keyCode == UP_ARROW){ y -= 5; }
-//   else if(key == "A"){ x += 10; }
-// }
+// スペースキーが押されたときに跳ねる
+window.onkeydown = function(event) {
+    if (event.code === 'Space') {
+        vy = -10;
+    }
+};
 
-function windowResized(){
-  resizeCanvas(windowWidth, windowHeight);
-}
+animate(); // アニメーションを開始

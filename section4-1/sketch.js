@@ -6,7 +6,7 @@ function setup(){
   // 配列をランダムに初期化する
   let scores = [];
   for(let i = 0; i < 10; i++){
-    scores[i] = random(20, 100); // 60以上100未満のランダムな数を代入
+    scores[i] = random(60, 100); // 60以上100未満のランダムな数を代入
   }
   console.log(scores);
 
@@ -34,7 +34,7 @@ function setup(){
   // ここから棒グラフを描いていきます。まずは背景に横線をn本引く
   const n = 10;
   for(let i = 0; i < n; i++){ line(0, height * i / n, width, height * i / n); }
-  
+
   noStroke();
 
   for(let i = 0; i < scores.length; i++){

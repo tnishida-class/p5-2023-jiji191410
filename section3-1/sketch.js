@@ -1,5 +1,7 @@
 // テキスト「リサイズするプログラムを作る」
 function setup(){
+  let windowWidth = 400;
+  let windowHeight = 400;
   createCanvas(windowWidth, windowHeight);
 }
 
