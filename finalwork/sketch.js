@@ -27,6 +27,7 @@ if(mouseIsPressed){
   textFont("serif");
 text("単位よ、来い！", windowWidth/2-220, 100); }
 
+
 }
 
 function windowResized() {
